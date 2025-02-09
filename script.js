@@ -138,72 +138,26 @@
     });
   
     /**
-     * Skills animation
-     */
-    let skilsContent = select('.skills-content');
-    if (skilsContent) {
-      new Waypoint({
-        element: skilsContent,
-        offset: '80%',
-        handler: function(direction) {
-          let progress = select('.progress .progress-bar', true);
-          progress.forEach((el) => {
-            el.style.width = el.getAttribute('aria-valuenow') + '%'
-          });
-        }
-      })
-    }
-  
-    /**
-     * Testimonials slider
-     */
-    new Swiper('.testimonials-slider', {
-      speed: 600,
-      loop: true,
-      autoplay: {
-        delay: 5000,
-        disableOnInteraction: false
-      },
-      slidesPerView: 'auto',
-      pagination: {
-        el: '.swiper-pagination',
-        type: 'bullets',
-        clickable: true
-      },
-      breakpoints: {
-        320: {
-          slidesPerView: 1,
-          spaceBetween: 20
-        },
-  
-        1200: {
-          slidesPerView: 3,
-          spaceBetween: 20
-        }
-      }
-    });
-  
-    /**
-     * Porfolio isotope and filter
+     * Works isotope and filter
      */
     window.addEventListener('load', () => {
-      let portfolioContainer = select('.portfolio-container');
-      if (portfolioContainer) {
-        let portfolioIsotope = new Isotope(portfolioContainer, {
-          itemSelector: '.portfolio-item',
+      let worksContainer = select('.works-container');
+      if (worksContainer) {
+        let worksIsotope = new Isotope(worksContainer, {
+          itemSelector: '.works-item',
           layoutMode: 'fitRows'
         });
   
-        let portfolioFilters = select('#portfolio-flters li', true);
+        let worksFilters = select('#works-flters li', true);
   
-        on('click', '#portfolio-flters li', function(e) {
+        on('click', '#works-flters li', function(e) {
           e.preventDefault();
-          portfolioFilters.forEach(function(el) {
+          worksFilters.forEach(function(el) {
             el.classList.remove('filter-active');
           });
           this.classList.add('filter-active');
   
-          portfolioIsotope.arrange({
+          worksIsotope.arrange({
             filter: this.getAttribute('data-filter')
           });
         }, true);
@@ -212,25 +166,16 @@
     });
   
     /**
-     * Initiate portfolio lightbox 
+     * Initiate works lightbox 
      */
-    const portfolioLightbox = GLightbox({
-      selector: '.portfolio-lightbox'
+    const worksLightbox = GLightbox({
+      selector: '.works-lightbox'
     });
   
     /**
-     * Initiate portfolio details lightbox 
+     * works details slider
      */
-    const portfolioDetailsLightbox = GLightbox({
-      selector: '.portfolio-details-lightbox',
-      width: '90%',
-      height: '90vh'
-    });
-  
-    /**
-     * Portfolio details slider
-     */
-    new Swiper('.portfolio-details-slider', {
+    new Swiper('.works-details-slider', {
       speed: 400,
       loop: true,
       autoplay: {
